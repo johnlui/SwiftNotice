@@ -1,6 +1,6 @@
 SwiftNotice
 --
-SwiftNotice is a GUI library for displaying various popups and notifications written in pure Swift.
+SwiftNotice is a GUI library for displaying various popups and notifications written in pure Swift, fits any scrollview.
 
 ##Features
 
