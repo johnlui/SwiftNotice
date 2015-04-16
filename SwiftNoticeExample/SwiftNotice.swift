@@ -159,8 +159,8 @@ class SwiftNoticeSDK {
             checkmarkShapePath.stroke()
             
             var checkmarkShapePath = UIBezierPath()
-            checkmarkShapePath.moveToPoint(CGPointMake(20, 27))
-            checkmarkShapePath.addArcWithCenter(CGPointMake(18, 27), radius: 2, startAngle: 0, endAngle: CGFloat(M_PI*2), clockwise: true)
+            checkmarkShapePath.moveToPoint(CGPointMake(18, 27))
+            checkmarkShapePath.addArcWithCenter(CGPointMake(18, 27), radius: 1, startAngle: 0, endAngle: CGFloat(M_PI*2), clockwise: true)
             checkmarkShapePath.closePath()
             
             UIColor.whiteColor().setFill()
