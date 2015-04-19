@@ -11,7 +11,7 @@ SwiftNotice is a GUI library for displaying various popups written in pure Swift
 In any subclass of UIViewController:
 
 ```swift
-self.pleaseWaite()
+self.pleaseWait()
 
 self.notice("Success!", type: NoticeType.success, autoClear: true)
 
