@@ -13,7 +13,7 @@
 		460ABCD71ADE87C000B43A4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460ABCD61ADE87C000B43A4E /* Images.xcassets */; };
 		460ABCDA1ADE87C000B43A4E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 460ABCD81ADE87C000B43A4E /* LaunchScreen.xib */; };
 		460ABCE61ADE87C000B43A4E /* SwiftNoticeExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460ABCE51ADE87C000B43A4E /* SwiftNoticeExampleTests.swift */; };
-		460ABCF01ADE8CEE00B43A4E /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460ABCEF1ADE8CEE00B43A4E /* SwiftNotice.swift */; };
+		46150D581AE37AB3001AB75F /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46150D571AE37AB3001AB75F /* SwiftNotice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		460ABCDF1ADE87C000B43A4E /* SwiftNoticeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftNoticeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		460ABCE41ADE87C000B43A4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		460ABCE51ADE87C000B43A4E /* SwiftNoticeExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNoticeExampleTests.swift; sourceTree = "<group>"; };
-		460ABCEF1ADE8CEE00B43A4E /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		46150D571AE37AB3001AB75F /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftNotice.swift; path = ../SwiftNotice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 		460ABCC11ADE87C000B43A4E = {
 			isa = PBXGroup;
 			children = (
-				460ABCEF1ADE8CEE00B43A4E /* SwiftNotice.swift */,
+				46150D571AE37AB3001AB75F /* SwiftNotice.swift */,
 				460ABCCC1ADE87C000B43A4E /* SwiftNoticeExample */,
 				460ABCE21ADE87C000B43A4E /* SwiftNoticeExampleTests */,
 				460ABCCB1ADE87C000B43A4E /* Products */,
@@ -215,7 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				460ABCF01ADE8CEE00B43A4E /* SwiftNotice.swift in Sources */,
+				46150D581AE37AB3001AB75F /* SwiftNotice.swift in Sources */,
 				460ABCD21ADE87C000B43A4E /* ViewController.swift in Sources */,
 				460ABCD01ADE87C000B43A4E /* AppDelegate.swift in Sources */,
 			);
@@ -413,6 +413,7 @@
 				460ABCEB1ADE87C000B43A4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		460ABCEC1ADE87C000B43A4E /* Build configuration list for PBXNativeTarget "SwiftNoticeExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +422,7 @@
 				460ABCEE1ADE87C000B43A4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

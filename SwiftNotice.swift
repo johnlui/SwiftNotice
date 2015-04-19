@@ -13,8 +13,8 @@ extension UIViewController {
     func notice(text: String, type: NoticeType, autoClear: Bool = true){
         SwiftNotice.showNoticeWithText(type, text: text, autoClear: autoClear)
     }
-    func pleaseWaite() {
-        SwiftNotice.waite()
+    func pleaseWait() {
+        SwiftNotice.wait()
     }
     func noticeOnlyText(text: String) {
         SwiftNotice.showText(text)
@@ -41,7 +41,7 @@ class SwiftNotice: NSObject {
         }
     }
     
-    static func waite() {
+    static func wait() {
         let mainView = UIView(frame: CGRectMake(0, 0, 78, 78))
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
@@ -136,7 +136,7 @@ class SwiftNoticeSDK {
         checkmarkShapePath.closePath()
         
         switch type {
-         case .success: // draw checkmark
+        case .success: // draw checkmark
             checkmarkShapePath.moveToPoint(CGPointMake(10, 18))
             checkmarkShapePath.addLineToPoint(CGPointMake(16, 24))
             checkmarkShapePath.addLineToPoint(CGPointMake(27, 13))
@@ -159,8 +159,8 @@ class SwiftNoticeSDK {
             checkmarkShapePath.stroke()
             
             var checkmarkShapePath = UIBezierPath()
-            checkmarkShapePath.moveToPoint(CGPointMake(20, 27))
-            checkmarkShapePath.addArcWithCenter(CGPointMake(18, 27), radius: 2, startAngle: 0, endAngle: CGFloat(M_PI*2), clockwise: true)
+            checkmarkShapePath.moveToPoint(CGPointMake(18, 27))
+            checkmarkShapePath.addArcWithCenter(CGPointMake(18, 27), radius: 1, startAngle: 0, endAngle: CGFloat(M_PI*2), clockwise: true)
             checkmarkShapePath.closePath()
             
             UIColor.whiteColor().setFill()

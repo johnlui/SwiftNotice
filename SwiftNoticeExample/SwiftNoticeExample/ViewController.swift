@@ -20,8 +20,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func waite(sender: AnyObject) {
-        self.pleaseWaite()
+    @IBAction func wait(sender: AnyObject) {
+        self.pleaseWait()
     }
     @IBAction func noticeSuccess(sender: AnyObject) {
         self.notice("Success!", type: NoticeType.success, autoClear: true)
