@@ -13,17 +13,16 @@ In any subclass of UIViewController:
 ```swift
 self.pleaseWait()
 
-self.notice("Success!", type: NoticeType.success, autoClear: true)
-
-self.notice("Error!", type: NoticeType.error, autoClear: true)
-
-self.notice("Info", type: NoticeType.info, autoClear: true)
+self.successNotice("Success!")
+self.errorNotice("Error!")
+self.infoNotice("Info")
 
 self.noticeOnlyText("Only Text")
 
-// clear all
-self.clearAllNotice()
+self.clearAllNotice() // clear
 ```
+
+[Read the documentation](https://github.com/johnlui/SwiftNotice/wiki) for more information.
 
 ##Installation
 

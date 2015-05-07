@@ -10,7 +10,25 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func notice(text: String, type: NoticeType, autoClear: Bool = true){
+    func successNotice(text: String) {
+        SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: true)
+    }
+    func successNotice(text: String, autoClear: Bool) {
+        SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: autoClear)
+    }
+    func errorNotice(text: String) {
+        SwiftNotice.showNoticeWithText(NoticeType.error, text: text, autoClear: true)
+    }
+    func errorNotice(text: String, autoClear: Bool) {
+        SwiftNotice.showNoticeWithText(NoticeType.error, text: text, autoClear: autoClear)
+    }
+    func infoNotice(text: String) {
+        SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: true)
+    }
+    func infoNotice(text: String, autoClear: Bool) {
+        SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: autoClear)
+    }
+    func notice(text: String, type: NoticeType, autoClear: Bool) {
         SwiftNotice.showNoticeWithText(type, text: text, autoClear: autoClear)
     }
     func pleaseWait() {
