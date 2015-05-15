@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,10 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSY-kU-1Hg">
-                                <rect key="frame" x="222" y="116" width="157" height="41"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSY-kU-1Hg" userLabel="successNotice">
+                                <rect key="frame" x="223" y="116" width="155" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="notice success">
+                                <state key="normal" title="successNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -27,9 +27,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-0c-TYE">
-                                <rect key="frame" x="222" y="165" width="157" height="41"/>
+                                <rect key="frame" x="223" y="165" width="155" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="notice error">
+                                <state key="normal" title="errorNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -37,9 +37,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhX-xe-SUb">
-                                <rect key="frame" x="222" y="214" width="157" height="41"/>
+                                <rect key="frame" x="223" y="214" width="155" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="notice info">
+                                <state key="normal" title="infoNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzm-el-j3t">
-                                <rect key="frame" x="222" y="539" width="157" height="41"/>
+                                <rect key="frame" x="223" y="539" width="155" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="clearAllNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,7 +57,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEE-N6-q62">
-                                <rect key="frame" x="222" y="263" width="157" height="41"/>
+                                <rect key="frame" x="223" y="263" width="155" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="noticeOnlyText">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,6 +76,16 @@
                                     <action selector="wait:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aPu-0P-t4c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTy-gc-doX">
+                                <rect key="frame" x="249" y="344" width="103" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="noticeTop">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="topNotice:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Zpm-pn-2Ze"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -87,6 +97,8 @@
                             <constraint firstItem="fZy-0c-TYE" firstAttribute="trailing" secondItem="DSY-kU-1Hg" secondAttribute="trailing" id="Co5-KC-GgM"/>
                             <constraint firstItem="MEE-N6-q62" firstAttribute="top" secondItem="uhX-xe-SUb" secondAttribute="bottom" constant="8" symbolic="YES" id="E6R-2z-0wt"/>
                             <constraint firstItem="VX1-bL-S67" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="47" id="MNc-WO-j1d"/>
+                            <constraint firstItem="yTy-gc-doX" firstAttribute="top" secondItem="MEE-N6-q62" secondAttribute="bottom" constant="40" id="Obb-2w-KNG"/>
+                            <constraint firstItem="yTy-gc-doX" firstAttribute="centerX" secondItem="MEE-N6-q62" secondAttribute="centerX" id="Tb6-ug-hp7"/>
                             <constraint firstItem="Kzm-el-j3t" firstAttribute="trailing" secondItem="MEE-N6-q62" secondAttribute="trailing" id="Tvq-0a-NBJ"/>
                             <constraint firstItem="VX1-bL-S67" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Zye-xI-hol"/>
                             <constraint firstItem="MEE-N6-q62" firstAttribute="trailing" secondItem="uhX-xe-SUb" secondAttribute="trailing" id="aEk-Ez-DZQ"/>

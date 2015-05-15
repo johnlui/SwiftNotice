@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    func noticeTop(text: String) {
+        SwiftNotice.noticeOnSatusBar(text, autoClear: true)
+    }
+    func noticeTop(text: String, autoClear: Bool) {
+        SwiftNotice.noticeOnSatusBar(text, autoClear: autoClear)
+    }
     func successNotice(text: String) {
         SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: true)
     }
@@ -50,17 +56,40 @@ enum NoticeType{
 
 class SwiftNotice: NSObject {
     
-    static var mainViews = Array<UIView>()
+    static var windows = Array<UIWindow!>()
     static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as! UIView
     
     static func clear() {
-        for i in mainViews {
-            i.removeFromSuperview()
-        }
+        windows.removeAll(keepCapacity: false)
     }
     
+    static func noticeOnSatusBar(text: String, autoClear: Bool) {
+        let frame = UIApplication.sharedApplication().statusBarFrame
+        let window = UIWindow(frame: frame)
+        let view = UIView(frame: frame)
+        view.backgroundColor = UIColor(red: 0x6a/0x100, green: 0xb4/0x100, blue: 0x9f/0x100, alpha: 1)
+        
+        let label = UILabel(frame: frame)
+        label.textAlignment = NSTextAlignment.Center
+        label.font = UIFont.systemFontOfSize(12)
+        label.textColor = UIColor.whiteColor()
+        label.text = text
+        view.addSubview(label)
+        
+        window.windowLevel = UIWindowLevelStatusBar
+        window.hidden = false
+        window.addSubview(view)
+        windows.append(window)
+        
+        if autoClear {
+            let selector = Selector("hideNotice:")
+            self.performSelector(selector, withObject: view, afterDelay: 1)
+        }
+    }
     static func wait() {
-        let mainView = UIView(frame: CGRectMake(0, 0, 78, 78))
+        let frame = CGRectMake(0, 0, 78, 78)
+        let window = UIWindow(frame: frame)
+        let mainView = UIView(frame: frame)
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
         
@@ -69,14 +98,15 @@ class SwiftNotice: NSObject {
         ai.startAnimating()
         mainView.addSubview(ai)
         
-        mainView.center = rv.center
-        rv.addSubview(mainView)
-        
-        mainViews.append(mainView)
+        window.windowLevel = UIWindowLevelAlert
+        window.center = rv.center
+        window.hidden = false
+        window.addSubview(mainView)
+        windows.append(window)
     }
-    
     static func showText(text: String) {
         let frame = CGRectMake(0, 0, 200, 60)
+        let window = UIWindow(frame: frame)
         let mainView = UIView(frame: frame)
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
@@ -88,14 +118,17 @@ class SwiftNotice: NSObject {
         label.textColor = UIColor.whiteColor()
         mainView.addSubview(label)
         
-        mainView.center = rv.center
-        rv.addSubview(mainView)
-        
-        mainViews.append(mainView)
+        window.windowLevel = UIWindowLevelAlert
+        window.center = rv.center
+        window.hidden = false
+        window.addSubview(mainView)
+        windows.append(window)
     }
     
     static func showNoticeWithText(type: NoticeType,text: String, autoClear: Bool) {
-        var mainView = UIView(frame: CGRectMake(0, 0, 90, 90))
+        let frame = CGRectMake(0, 0, 90, 90)
+        let window = UIWindow(frame: frame)
+        let mainView = UIView(frame: frame)
         mainView.layer.cornerRadius = 10
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.7)
         
@@ -120,12 +153,13 @@ class SwiftNotice: NSObject {
         label.text = text
         label.textAlignment = NSTextAlignment.Center
         mainView.addSubview(label)
-        
-        mainView.center = rv.center
-        rv.addSubview(mainView)
-        
-        mainViews.append(mainView)
-        
+
+        window.windowLevel = UIWindowLevelAlert
+        window.center = rv.center
+        window.hidden = false
+        window.addSubview(mainView)
+        windows.append(window)
+
         if autoClear {
             let selector = Selector("hideNotice:")
             self.performSelector(selector, withObject: mainView, afterDelay: 3)

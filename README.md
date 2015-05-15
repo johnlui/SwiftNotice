@@ -4,7 +4,7 @@ SwiftNotice is a GUI library for displaying various popups written in pure Swift
 
 ##Features
 
-![SwiftNotice gif](http://staticonsae.sinaapp.com/images/SwiftNotice2.gif)
+![SwiftNotice gif](http://staticonsae.sinaapp.com/images/SwiftNotice3.gif)
 
 ##Pretty easy to use
 
@@ -12,6 +12,8 @@ In any subclass of UIViewController:
 
 ```swift
 self.pleaseWait()
+
+self.noticeTop("转发成功！")
 
 self.successNotice("Success!")
 self.errorNotice("Error!")
@@ -31,8 +33,7 @@ Just clone and add `SwiftNotice.swift` to your project.
 ##Requirements
 
 * iOS 7.0+
-* Xcode 6.3
-* Swift 1.2
+* Xcode 6.3 (Swift 1.2)
 
 ##Contribution
 

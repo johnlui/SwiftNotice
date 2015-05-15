@@ -20,6 +20,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func topNotice(sender: AnyObject) {
+        self.noticeTop("转发成功！")
+    }
     @IBAction func wait(sender: AnyObject) {
         self.pleaseWait()
     }
