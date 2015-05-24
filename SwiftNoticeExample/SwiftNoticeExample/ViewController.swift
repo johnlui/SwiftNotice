@@ -28,21 +28,15 @@ class ViewController: UIViewController {
     }
     @IBAction func noticeSuccess(sender: AnyObject) {
         self.successNotice("Success!")
-        self.successNotice("Success!", autoClear: false)
-        self.notice("Success!", type: NoticeType.success, autoClear: true)
     }
     @IBAction func noticeError(sender: AnyObject) {
         self.errorNotice("Error!")
-        self.errorNotice("Error!", autoClear: false)
-        self.notice("Error!", type: NoticeType.error, autoClear: true)
     }
     @IBAction func noticeInfo(sender: AnyObject) {
         self.infoNotice("Info")
-        self.infoNotice("Info", autoClear: false)
-        self.notice("Info", type: NoticeType.info, autoClear: true)
     }
     @IBAction func text(sender: AnyObject) {
-        self.noticeOnlyText("Only Text")
+        self.noticeOnlyText("Only Text Only Text Only Text Only \nText Only Text Only Text Only\n Text Only Text Only Text ")
     }
     @IBAction func clear(sender: AnyObject) {
         self.clearAllNotice()

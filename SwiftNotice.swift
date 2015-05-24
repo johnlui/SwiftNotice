@@ -60,7 +60,9 @@ class SwiftNotice: NSObject {
     static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as! UIView
     
     static func clear() {
-        windows.removeAll(keepCapacity: false)
+        for i in windows {
+            i.hidden = true
+        }
     }
     
     static func noticeOnSatusBar(text: String, autoClear: Bool) {
@@ -105,18 +107,25 @@ class SwiftNotice: NSObject {
         windows.append(window)
     }
     static func showText(text: String) {
-        let frame = CGRectMake(0, 0, 200, 60)
-        let window = UIWindow(frame: frame)
-        let mainView = UIView(frame: frame)
+        let window = UIWindow()
+        let mainView = UIView()
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
         
-        let label = UILabel(frame: frame)
+        let label = UILabel()
         label.text = text
+        label.numberOfLines = 0
         label.font = UIFont.systemFontOfSize(13)
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.whiteColor()
+        label.sizeToFit()
         mainView.addSubview(label)
+        
+        let superFrame = CGRectMake(0, 0, label.frame.width + 50 , label.frame.height + 30)
+        window.frame = superFrame
+        mainView.frame = superFrame
+        
+        label.center = mainView.center
         
         window.windowLevel = UIWindowLevelAlert
         window.center = rv.center
