@@ -13,7 +13,7 @@ In any subclass of UIViewController:
 ```swift
 self.pleaseWait()
 
-self.noticeTop("转发成功！")
+self.noticeTop("OK!")
 
 self.successNotice("Success!")
 self.errorNotice("Error!")
