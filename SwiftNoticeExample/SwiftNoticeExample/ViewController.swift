@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func topNotice(sender: AnyObject) {
-        self.noticeTop("转发成功！")
+        self.noticeTop("OK!")
     }
     @IBAction func wait(sender: AnyObject) {
         self.pleaseWait()

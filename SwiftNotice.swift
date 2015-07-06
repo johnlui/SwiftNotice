@@ -57,7 +57,7 @@ enum NoticeType{
 class SwiftNotice: NSObject {
     
     static var windows = Array<UIWindow!>()
-    static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as! UIView
+    static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as UIView!
     
     static func clear() {
         for i in windows {
@@ -189,7 +189,7 @@ class SwiftNoticeSDK {
         static var imageOfInfo: UIImage?
     }
     class func draw(type: NoticeType) {
-        var checkmarkShapePath = UIBezierPath()
+        let checkmarkShapePath = UIBezierPath()
         
         // draw circle
         checkmarkShapePath.moveToPoint(CGPointMake(36, 18))
@@ -219,7 +219,7 @@ class SwiftNoticeSDK {
             UIColor.whiteColor().setStroke()
             checkmarkShapePath.stroke()
             
-            var checkmarkShapePath = UIBezierPath()
+            let checkmarkShapePath = UIBezierPath()
             checkmarkShapePath.moveToPoint(CGPointMake(18, 27))
             checkmarkShapePath.addArcWithCenter(CGPointMake(18, 27), radius: 1, startAngle: 0, endAngle: CGFloat(M_PI*2), clockwise: true)
             checkmarkShapePath.closePath()
