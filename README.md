@@ -4,7 +4,7 @@ SwiftNotice is a GUI library for displaying various popups written in pure Swift
 
 ##Features
 
-![SwiftNotice gif](http://staticonsae.sinaapp.com/images/SwiftNotice3.gif)
+![SwiftNotice gif](http://staticonsae.sinaapp.com/images/SwiftNotice4.gif)
 
 ##Pretty easy to use
 

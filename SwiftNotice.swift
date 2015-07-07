@@ -67,8 +67,9 @@ class SwiftNotice: NSObject {
     
     static func noticeOnSatusBar(text: String, autoClear: Bool) {
         let frame = UIApplication.sharedApplication().statusBarFrame
-        let window = UIWindow(frame: frame)
-        let view = UIView(frame: frame)
+        let window = UIWindow()
+        window.backgroundColor = UIColor.clearColor()
+        let view = UIView()
         view.backgroundColor = UIColor(red: 0x6a/0x100, green: 0xb4/0x100, blue: 0x9f/0x100, alpha: 1)
         
         let label = UILabel(frame: frame)
@@ -77,6 +78,9 @@ class SwiftNotice: NSObject {
         label.textColor = UIColor.whiteColor()
         label.text = text
         view.addSubview(label)
+        
+        window.frame = frame
+        view.frame = frame
         
         window.windowLevel = UIWindowLevelStatusBar
         window.hidden = false
@@ -90,8 +94,9 @@ class SwiftNotice: NSObject {
     }
     static func wait() {
         let frame = CGRectMake(0, 0, 78, 78)
-        let window = UIWindow(frame: frame)
-        let mainView = UIView(frame: frame)
+        let window = UIWindow()
+        window.backgroundColor = UIColor.clearColor()
+        let mainView = UIView()
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
         
@@ -99,6 +104,9 @@ class SwiftNotice: NSObject {
         ai.frame = CGRectMake(21, 21, 36, 36)
         ai.startAnimating()
         mainView.addSubview(ai)
+
+        window.frame = frame
+        mainView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
         window.center = rv.center
@@ -108,6 +116,7 @@ class SwiftNotice: NSObject {
     }
     static func showText(text: String) {
         let window = UIWindow()
+        window.backgroundColor = UIColor.clearColor()
         let mainView = UIView()
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
@@ -136,8 +145,9 @@ class SwiftNotice: NSObject {
     
     static func showNoticeWithText(type: NoticeType,text: String, autoClear: Bool) {
         let frame = CGRectMake(0, 0, 90, 90)
-        let window = UIWindow(frame: frame)
-        let mainView = UIView(frame: frame)
+        let window = UIWindow()
+        window.backgroundColor = UIColor.clearColor()
+        let mainView = UIView()
         mainView.layer.cornerRadius = 10
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.7)
         
@@ -162,7 +172,10 @@ class SwiftNotice: NSObject {
         label.text = text
         label.textAlignment = NSTextAlignment.Center
         mainView.addSubview(label)
-
+        
+        window.frame = frame
+        mainView.frame = frame
+        
         window.windowLevel = UIWindowLevelAlert
         window.center = rv.center
         window.hidden = false

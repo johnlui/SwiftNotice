@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,7 +18,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSY-kU-1Hg" userLabel="successNotice">
-                                <rect key="frame" x="223" y="116" width="155" height="41"/>
+                                <rect key="frame" x="221" y="102" width="159" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="gub-jp-YUa"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="successNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,7 +31,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-0c-TYE">
-                                <rect key="frame" x="223" y="165" width="155" height="41"/>
+                                <rect key="frame" x="221" y="137" width="159" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Jwz-2y-Vuk"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="errorNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,7 +44,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhX-xe-SUb">
-                                <rect key="frame" x="223" y="214" width="155" height="41"/>
+                                <rect key="frame" x="221" y="172" width="159" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="cTg-ET-Q0I"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="infoNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +57,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzm-el-j3t">
-                                <rect key="frame" x="223" y="539" width="155" height="41"/>
+                                <rect key="frame" x="221" y="539" width="159" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="yyj-BU-E1j"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="clearAllNotice">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,7 +70,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEE-N6-q62">
-                                <rect key="frame" x="223" y="263" width="155" height="41"/>
+                                <rect key="frame" x="221" y="207" width="159" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="7DC-fx-7p3"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="noticeOnlyText">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,7 +83,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VX1-bL-S67">
-                                <rect key="frame" x="243" y="67" width="115" height="41"/>
+                                <rect key="frame" x="242" y="67" width="117" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="jcR-tK-OvS"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="pleaseWait">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,7 +96,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTy-gc-doX">
-                                <rect key="frame" x="249" y="344" width="103" height="41"/>
+                                <rect key="frame" x="249" y="504" width="104" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="j6n-Ju-H3D"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="noticeTop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,28 +111,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DSY-kU-1Hg" firstAttribute="centerX" secondItem="VX1-bL-S67" secondAttribute="centerX" id="0eR-oP-bjK"/>
-                            <constraint firstItem="MEE-N6-q62" firstAttribute="leading" secondItem="uhX-xe-SUb" secondAttribute="leading" id="2Mn-Mj-HnJ"/>
-                            <constraint firstItem="uhX-xe-SUb" firstAttribute="leading" secondItem="fZy-0c-TYE" secondAttribute="leading" id="4ah-lr-zzl"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Kzm-el-j3t" secondAttribute="bottom" constant="20" id="5KE-zv-5wb"/>
-                            <constraint firstItem="DSY-kU-1Hg" firstAttribute="top" secondItem="VX1-bL-S67" secondAttribute="bottom" constant="8" symbolic="YES" id="9k5-yR-YtE"/>
-                            <constraint firstItem="fZy-0c-TYE" firstAttribute="trailing" secondItem="DSY-kU-1Hg" secondAttribute="trailing" id="Co5-KC-GgM"/>
-                            <constraint firstItem="MEE-N6-q62" firstAttribute="top" secondItem="uhX-xe-SUb" secondAttribute="bottom" constant="8" symbolic="YES" id="E6R-2z-0wt"/>
-                            <constraint firstItem="VX1-bL-S67" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="47" id="MNc-WO-j1d"/>
+                            <constraint firstItem="VX1-bL-S67" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="47" id="0jK-Wt-xVt"/>
+                            <constraint firstItem="Kzm-el-j3t" firstAttribute="centerX" secondItem="yTy-gc-doX" secondAttribute="centerX" id="4DG-w9-wUN"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Kzm-el-j3t" secondAttribute="bottom" constant="33" id="79V-LB-KlG"/>
+                            <constraint firstItem="fZy-0c-TYE" firstAttribute="trailing" secondItem="uhX-xe-SUb" secondAttribute="trailing" id="AGf-Ku-kQD"/>
+                            <constraint firstItem="fZy-0c-TYE" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="AT1-c0-gt9"/>
+                            <constraint firstItem="fZy-0c-TYE" firstAttribute="top" secondItem="DSY-kU-1Hg" secondAttribute="bottom" constant="7" id="BVr-2R-jXb"/>
+                            <constraint firstItem="fZy-0c-TYE" firstAttribute="leading" secondItem="uhX-xe-SUb" secondAttribute="leading" id="DxU-yV-mT2"/>
+                            <constraint firstItem="MEE-N6-q62" firstAttribute="trailing" secondItem="Kzm-el-j3t" secondAttribute="trailing" id="E6e-Xb-Ie0"/>
+                            <constraint firstItem="VX1-bL-S67" firstAttribute="centerX" secondItem="DSY-kU-1Hg" secondAttribute="centerX" id="FTt-xn-gHx"/>
+                            <constraint firstItem="MEE-N6-q62" firstAttribute="leading" secondItem="Kzm-el-j3t" secondAttribute="leading" id="Gac-1t-Quq"/>
+                            <constraint firstItem="uhX-xe-SUb" firstAttribute="leading" secondItem="MEE-N6-q62" secondAttribute="leading" id="JPy-6Q-A1p"/>
+                            <constraint firstItem="DSY-kU-1Hg" firstAttribute="top" secondItem="VX1-bL-S67" secondAttribute="bottom" constant="7" id="MPF-Hi-TDY"/>
                             <constraint firstItem="yTy-gc-doX" firstAttribute="top" secondItem="MEE-N6-q62" secondAttribute="bottom" constant="40" id="Obb-2w-KNG"/>
-                            <constraint firstItem="yTy-gc-doX" firstAttribute="centerX" secondItem="MEE-N6-q62" secondAttribute="centerX" id="Tb6-ug-hp7"/>
-                            <constraint firstItem="Kzm-el-j3t" firstAttribute="trailing" secondItem="MEE-N6-q62" secondAttribute="trailing" id="Tvq-0a-NBJ"/>
-                            <constraint firstItem="VX1-bL-S67" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Zye-xI-hol"/>
-                            <constraint firstItem="MEE-N6-q62" firstAttribute="trailing" secondItem="uhX-xe-SUb" secondAttribute="trailing" id="aEk-Ez-DZQ"/>
-                            <constraint firstItem="uhX-xe-SUb" firstAttribute="trailing" secondItem="fZy-0c-TYE" secondAttribute="trailing" id="bAM-ud-Wc6"/>
-                            <constraint firstItem="fZy-0c-TYE" firstAttribute="top" secondItem="DSY-kU-1Hg" secondAttribute="bottom" constant="8" symbolic="YES" id="ceR-9g-ydJ"/>
-                            <constraint firstItem="uhX-xe-SUb" firstAttribute="top" secondItem="fZy-0c-TYE" secondAttribute="bottom" constant="8" symbolic="YES" id="jcD-Eb-YkU"/>
+                            <constraint firstItem="uhX-xe-SUb" firstAttribute="top" secondItem="fZy-0c-TYE" secondAttribute="bottom" constant="7" id="Xjb-nq-Qqo"/>
+                            <constraint firstItem="Kzm-el-j3t" firstAttribute="top" secondItem="yTy-gc-doX" secondAttribute="bottom" constant="7" id="Zh3-h9-fbC"/>
+                            <constraint firstItem="uhX-xe-SUb" firstAttribute="trailing" secondItem="MEE-N6-q62" secondAttribute="trailing" id="a8O-Rl-VtX"/>
                             <constraint firstItem="Kzm-el-j3t" firstAttribute="top" secondItem="MEE-N6-q62" secondAttribute="bottom" constant="8" symbolic="YES" id="jcg-24-9On"/>
-                            <constraint firstItem="fZy-0c-TYE" firstAttribute="leading" secondItem="DSY-kU-1Hg" secondAttribute="leading" id="teu-28-LSM"/>
-                            <constraint firstItem="Kzm-el-j3t" firstAttribute="leading" secondItem="MEE-N6-q62" secondAttribute="leading" id="vAh-ob-Cbh"/>
+                            <constraint firstItem="DSY-kU-1Hg" firstAttribute="trailing" secondItem="fZy-0c-TYE" secondAttribute="trailing" id="pEB-tj-lY4"/>
+                            <constraint firstItem="MEE-N6-q62" firstAttribute="top" secondItem="uhX-xe-SUb" secondAttribute="bottom" constant="7" id="tfx-9O-mva"/>
+                            <constraint firstItem="fZy-0c-TYE" firstAttribute="leading" secondItem="DSY-kU-1Hg" secondAttribute="leading" id="z2M-zE-OyC"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Obb-2w-KNG"/>
                                 <exclude reference="jcg-24-9On"/>
                             </mask>
                         </variation>
