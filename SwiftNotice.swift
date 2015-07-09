@@ -159,8 +159,6 @@ class SwiftNotice: NSObject {
             image = SwiftNoticeSDK.imageOfCross
         case .info:
             image = SwiftNoticeSDK.imageOfInfo
-        default:
-            break
         }
         let checkmarkView = UIImageView(image: image)
         checkmarkView.frame = CGRectMake(27, 15, 36, 36)
@@ -239,8 +237,6 @@ class SwiftNoticeSDK {
             
             UIColor.whiteColor().setFill()
             checkmarkShapePath.fill()
-        default:
-            break
         }
         
         UIColor.whiteColor().setStroke()
