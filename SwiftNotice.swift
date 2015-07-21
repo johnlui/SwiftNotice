@@ -41,23 +41,26 @@ extension UIViewController {
         SwiftNotice.wait()
     }
     func noticeOnlyText(text: String) {
-        SwiftNotice.showText(text)
+        SwiftNotice.showText(text, autoClear: true)
+    }
+    func noticeOnlyText(text: String, autoClear: Bool) {
+        SwiftNotice.showText(text, autoClear: autoClear)
     }
     func clearAllNotice() {
         SwiftNotice.clear()
     }
 }
 
-enum NoticeType{
+enum NoticeType {
     case success
     case error
     case info
 }
 
-class SwiftNotice: NSObject {
+class SwiftNotice : NSObject {
     
     static var windows = Array<UIWindow!>()
-    static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as UIView!
+    static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as! UIView!
     
     static func clear() {
         for i in windows {
@@ -67,9 +70,8 @@ class SwiftNotice: NSObject {
     
     static func noticeOnSatusBar(text: String, autoClear: Bool) {
         let frame = UIApplication.sharedApplication().statusBarFrame
-        let window = UIWindow()
-        window.backgroundColor = UIColor.clearColor()
-        let view = UIView()
+        let window = UIWindow(frame: frame)
+        let view = UIView(frame: frame)
         view.backgroundColor = UIColor(red: 0x6a/0x100, green: 0xb4/0x100, blue: 0x9f/0x100, alpha: 1)
         
         let label = UILabel(frame: frame)
@@ -78,9 +80,6 @@ class SwiftNotice: NSObject {
         label.textColor = UIColor.whiteColor()
         label.text = text
         view.addSubview(label)
-        
-        window.frame = frame
-        view.frame = frame
         
         window.windowLevel = UIWindowLevelStatusBar
         window.hidden = false
@@ -94,9 +93,8 @@ class SwiftNotice: NSObject {
     }
     static func wait() {
         let frame = CGRectMake(0, 0, 78, 78)
-        let window = UIWindow()
-        window.backgroundColor = UIColor.clearColor()
-        let mainView = UIView()
+        let window = UIWindow(frame: frame)
+        let mainView = UIView(frame: frame)
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
         
@@ -104,9 +102,6 @@ class SwiftNotice: NSObject {
         ai.frame = CGRectMake(21, 21, 36, 36)
         ai.startAnimating()
         mainView.addSubview(ai)
-
-        window.frame = frame
-        mainView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
         window.center = rv.center
@@ -114,9 +109,9 @@ class SwiftNotice: NSObject {
         window.addSubview(mainView)
         windows.append(window)
     }
-    static func showText(text: String) {
+    
+    static func showText(text: String, autoClear: Bool) {
         let window = UIWindow()
-        window.backgroundColor = UIColor.clearColor()
         let mainView = UIView()
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
@@ -128,6 +123,7 @@ class SwiftNotice: NSObject {
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.whiteColor()
         label.sizeToFit()
+       // let textSize = UILabel.textSize(text, font: label.font, width: 100)
         mainView.addSubview(label)
         
         let superFrame = CGRectMake(0, 0, label.frame.width + 50 , label.frame.height + 30)
@@ -141,13 +137,31 @@ class SwiftNotice: NSObject {
         window.hidden = false
         window.addSubview(mainView)
         windows.append(window)
+        
+        if autoClear {
+            let selector = Selector("hideNotice:")
+            self.performSelector(selector, withObject: mainView, afterDelay: 1)
+        }
     }
     
     static func showNoticeWithText(type: NoticeType,text: String, autoClear: Bool) {
-        let frame = CGRectMake(0, 0, 90, 90)
-        let window = UIWindow()
-        window.backgroundColor = UIColor.clearColor()
-        let mainView = UIView()
+        
+        let label = UILabel()
+        label.font = UIFont.systemFontOfSize(11)
+        label.textColor = UIColor.whiteColor()
+        label.text = text
+        label.textAlignment = NSTextAlignment.Center
+        label.sizeToFit()
+        
+        let lblSize = UILabel.textSize(text, font: label.font, width: 320)
+        var superFrame = CGRectMake(0, 0, lblSize.width + 10, 90)
+        if superFrame.width < 90 {
+            superFrame = CGRectMake(0, 0, 90, 90)
+        }
+        let window = UIWindow(frame: superFrame)
+        let mainView = UIView(frame: superFrame)
+        
+        label.frame = CGRectMake(superFrame.width / 2 - lblSize.width / 2, 60, lblSize.width, lblSize.height)
         mainView.layer.cornerRadius = 10
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.7)
         
@@ -159,21 +173,16 @@ class SwiftNotice: NSObject {
             image = SwiftNoticeSDK.imageOfCross
         case .info:
             image = SwiftNoticeSDK.imageOfInfo
+        default:
+            break
         }
+        
         let checkmarkView = UIImageView(image: image)
-        checkmarkView.frame = CGRectMake(27, 15, 36, 36)
+        checkmarkView.frame = CGRectMake(superFrame.width / 2 - 18, 15, 36, 36)
+        
         mainView.addSubview(checkmarkView)
-        
-        let label = UILabel(frame: CGRectMake(0, 60, 90, 16))
-        label.font = UIFont.systemFontOfSize(13)
-        label.textColor = UIColor.whiteColor()
-        label.text = text
-        label.textAlignment = NSTextAlignment.Center
         mainView.addSubview(label)
-        
-        window.frame = frame
-        mainView.frame = frame
-        
+
         window.windowLevel = UIWindowLevelAlert
         window.center = rv.center
         window.hidden = false
@@ -187,6 +196,7 @@ class SwiftNotice: NSObject {
     }
     
     static func hideNotice(sender: AnyObject) {
+        windows.removeLast()
         if sender is UIView {
             sender.removeFromSuperview()
         }
@@ -237,6 +247,8 @@ class SwiftNoticeSDK {
             
             UIColor.whiteColor().setFill()
             checkmarkShapePath.fill()
+        default:
+            break
         }
         
         UIColor.whiteColor().setStroke()
@@ -277,5 +289,58 @@ class SwiftNoticeSDK {
         Cache.imageOfInfo = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return Cache.imageOfInfo!
+    }
+}
+
+extension UILabel {
+    /**
+    根据 text 文本信息 获取Label的size
+    
+    :param: string 文本信息
+    :param: font   字体大小
+    :param: width  最大宽度
+    
+    :returns: size
+    */
+    class func textSize(string: String, font: UIFont, width: CGFloat) -> CGSize {
+        if string.length == 0 {
+            return CGSizeZero
+        }
+        let maxSize = CGSizeMake(width, CGFloat(MAXFLOAT))
+        let NSStr = string as NSString
+        return NSStr.textSizeOfFont(font, size: maxSize)
+    }
+}
+
+extension NSString {
+    
+    func textSizeOfFont(font: UIFont, size: CGSize) -> CGSize {
+        return self.textSizeOfFont(font, size: size, options: NSStringDrawingOptions.UsesLineFragmentOrigin)
+    }
+    
+    /**
+    获得字符串所在Label的尺寸
+    
+    :param: font    字体大小
+    :param: size    size
+    :param: options options
+    
+    :returns: Label的size
+    */
+    func textSizeOfFont(font: UIFont, size: CGSize, options: NSStringDrawingOptions) -> CGSize {
+        var lblSize: CGSize?
+        
+        let rec = self.boundingRectWithSize(size, options: options, attributes: [NSFontAttributeName : font], context: nil)
+        lblSize = CGSizeMake(ceil(rec.size.width), ceil(rec.size.height))
+        
+        return lblSize!
+    }
+}
+
+extension String {
+    
+    /// 长度
+    var length: Int {
+        return count(self)
     }
 }
