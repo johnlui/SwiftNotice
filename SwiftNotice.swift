@@ -291,3 +291,56 @@ class SwiftNoticeSDK {
         return Cache.imageOfInfo!
     }
 }
+
+extension UILabel {
+    /**
+    根据 text 文本信息 获取Label的size
+    
+    :param: string 文本信息
+    :param: font   字体大小
+    :param: width  最大宽度
+    
+    :returns: size
+    */
+    class func textSize(string: String, font: UIFont, width: CGFloat) -> CGSize {
+        if string.length == 0 {
+            return CGSizeZero
+        }
+        let maxSize = CGSizeMake(width, CGFloat(MAXFLOAT))
+        let NSStr = string as NSString
+        return NSStr.textSizeOfFont(font, size: maxSize)
+    }
+}
+
+extension NSString {
+    
+    func textSizeOfFont(font: UIFont, size: CGSize) -> CGSize {
+        return self.textSizeOfFont(font, size: size, options: NSStringDrawingOptions.UsesLineFragmentOrigin)
+    }
+    
+    /**
+    获得字符串所在Label的尺寸
+    
+    :param: font    字体大小
+    :param: size    size
+    :param: options options
+    
+    :returns: Label的size
+    */
+    func textSizeOfFont(font: UIFont, size: CGSize, options: NSStringDrawingOptions) -> CGSize {
+        var lblSize: CGSize?
+        
+        let rec = self.boundingRectWithSize(size, options: options, attributes: [NSFontAttributeName : font], context: nil)
+        lblSize = CGSizeMake(ceil(rec.size.width), ceil(rec.size.height))
+        
+        return lblSize!
+    }
+}
+
+extension String {
+    
+    /// 长度
+    var length: Int {
+        return count(self)
+    }
+}
