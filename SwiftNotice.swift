@@ -60,9 +60,8 @@ class SwiftNotice: NSObject {
     static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as UIView!
     
     static func clear() {
-        for i in windows {
-            i.hidden = true
-        }
+        self.cancelPreviousPerformRequestsWithTarget(self)
+        windows.removeAll(keepCapacity: false)
     }
     
     static func noticeOnSatusBar(text: String, autoClear: Bool) {
@@ -89,7 +88,7 @@ class SwiftNotice: NSObject {
         
         if autoClear {
             let selector = Selector("hideNotice:")
-            self.performSelector(selector, withObject: view, afterDelay: 1)
+            self.performSelector(selector, withObject: window, afterDelay: 1)
         }
     }
     static func wait() {
@@ -182,13 +181,17 @@ class SwiftNotice: NSObject {
 
         if autoClear {
             let selector = Selector("hideNotice:")
-            self.performSelector(selector, withObject: mainView, afterDelay: 3)
+            self.performSelector(selector, withObject: window, afterDelay: 3)
         }
     }
     
     static func hideNotice(sender: AnyObject) {
-        if sender is UIView {
-            sender.removeFromSuperview()
+        if let window = sender as? UIWindow {
+            if let index = windows.indexOf({ (item) -> Bool in
+                return item == window
+            }) {
+                windows.removeAtIndex(index)
+            }
         }
     }
 }
