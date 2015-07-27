@@ -59,6 +59,8 @@ class SwiftNotice: NSObject {
     static var windows = Array<UIWindow!>()
     static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as UIView!
     
+    // fix https://github.com/johnlui/SwiftNotice/issues/2
+    // thanks broccolii(https://github.com/broccolii) and his PR https://github.com/johnlui/SwiftNotice/pull/5
     static func clear() {
         self.cancelPreviousPerformRequestsWithTarget(self)
         windows.removeAll(keepCapacity: false)
@@ -185,6 +187,7 @@ class SwiftNotice: NSObject {
         }
     }
     
+    // fix https://github.com/johnlui/SwiftNotice/issues/2
     static func hideNotice(sender: AnyObject) {
         if let window = sender as? UIWindow {
             if let index = windows.indexOf({ (item) -> Bool in
