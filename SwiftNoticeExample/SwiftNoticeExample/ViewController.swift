@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     }
     @IBAction func noticeSuccess(sender: AnyObject) {
         self.successNotice("Success!")
+        self.noticeError(<#T##text: String##String#>) noticeSuccess("Success!", autoClear: true)
+        self.noticeSuccess("Success!", autoClear: true, autoClearTime: 10)
     }
     @IBAction func noticeError(sender: AnyObject) {
         self.errorNotice("Error!")

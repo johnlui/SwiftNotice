@@ -16,26 +16,30 @@ extension UIViewController {
     func noticeTop(text: String, autoClear: Bool) {
         SwiftNotice.noticeOnSatusBar(text, autoClear: autoClear)
     }
-    func successNotice(text: String) {
-        SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: true)
+    
+    // new apis from v3.3
+    func noticeSuccess(text: String, autoClear: Bool = false, autoClearTime: Int = 3) {
+        SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
-    func successNotice(text: String, autoClear: Bool) {
-        SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: autoClear)
+    func noticeError(text: String, autoClear: Bool = false, autoClearTime: Int = 3) {
+        SwiftNotice.showNoticeWithText(NoticeType.error, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
-    func errorNotice(text: String) {
-        SwiftNotice.showNoticeWithText(NoticeType.error, text: text, autoClear: true)
+    func noticeInfo(text: String, autoClear: Bool = false, autoClearTime: Int = 3) {
+        SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
-    func errorNotice(text: String, autoClear: Bool) {
-        SwiftNotice.showNoticeWithText(NoticeType.error, text: text, autoClear: autoClear)
+    
+    // old apis
+    func successNotice(text: String, autoClear: Bool = true) {
+        SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: autoClear, autoClearTime: 3)
     }
-    func infoNotice(text: String) {
-        SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: true)
+    func errorNotice(text: String, autoClear: Bool = true) {
+        SwiftNotice.showNoticeWithText(NoticeType.error, text: text, autoClear: autoClear, autoClearTime: 3)
     }
-    func infoNotice(text: String, autoClear: Bool) {
-        SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: autoClear)
+    func infoNotice(text: String, autoClear: Bool = true) {
+        SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: autoClear, autoClearTime: 3)
     }
-    func notice(text: String, type: NoticeType, autoClear: Bool) {
-        SwiftNotice.showNoticeWithText(type, text: text, autoClear: autoClear)
+    func notice(text: String, type: NoticeType, autoClear: Bool, autoClearTime: Int = 3) {
+        SwiftNotice.showNoticeWithText(type, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
     func pleaseWait() {
         SwiftNotice.wait()
@@ -144,7 +148,7 @@ class SwiftNotice: NSObject {
         windows.append(window)
     }
     
-    static func showNoticeWithText(type: NoticeType,text: String, autoClear: Bool) {
+    static func showNoticeWithText(type: NoticeType,text: String, autoClear: Bool, autoClearTime: Int) {
         let frame = CGRectMake(0, 0, 90, 90)
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
@@ -183,7 +187,7 @@ class SwiftNotice: NSObject {
 
         if autoClear {
             let selector = Selector("hideNotice:")
-            self.performSelector(selector, withObject: window, afterDelay: 3)
+            self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(autoClearTime))
         }
     }
     

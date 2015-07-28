@@ -15,9 +15,9 @@ self.pleaseWait()
 
 self.noticeTop("OK!")
 
-self.successNotice("Success!")
-self.errorNotice("Error!")
-self.infoNotice("Info")
+self.noticeSuccess("Success!")
+self.noticeError("Error!")
+self.noticeInfo("Info")
 
 self.noticeOnlyText("Only Text")
 
