@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func noticeTop(text: String) {
-        SwiftNotice.noticeOnSatusBar(text, autoClear: true)
-    }
-    func noticeTop(text: String, autoClear: Bool) {
-        SwiftNotice.noticeOnSatusBar(text, autoClear: autoClear)
+    // api changed from v3.3
+    func noticeTop(text: String, autoClear: Bool = false, autoClearTime: Int = 1) {
+        SwiftNotice.noticeOnSatusBar(text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
     
     // new apis from v3.3
@@ -70,7 +68,7 @@ class SwiftNotice: NSObject {
         windows.removeAll(keepCapacity: false)
     }
     
-    static func noticeOnSatusBar(text: String, autoClear: Bool) {
+    static func noticeOnSatusBar(text: String, autoClear: Bool, autoClearTime: Int) {
         let frame = UIApplication.sharedApplication().statusBarFrame
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
@@ -94,7 +92,7 @@ class SwiftNotice: NSObject {
         
         if autoClear {
             let selector = Selector("hideNotice:")
-            self.performSelector(selector, withObject: window, afterDelay: 1)
+            self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(autoClearTime))
         }
     }
     static func wait() {
