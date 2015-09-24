@@ -24,7 +24,12 @@ class ViewController: UIViewController {
         self.noticeTop("OK!")
     }
     @IBAction func wait(sender: AnyObject) {
-        self.pleaseWait()
+//        self.pleaseWait()
+        var imagesArray = Array<UIImage>()
+        for i in 1...7 {
+            imagesArray.append(UIImage(named: "loading\(i)")!)
+        }
+        self.pleaseWaitWithImages(imagesArray, timeInterval: 50)
     }
     @IBAction func noticeSuccess(sender: AnyObject) {
         self.successNotice("Success!")

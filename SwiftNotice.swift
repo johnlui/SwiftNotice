@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    /// wait with your own animated images
+    func pleaseWaitWithImages(imageNames: Array<UIImage>, timeInterval: Int) {
+        SwiftNotice.wait(imageNames, timeInterval: timeInterval)
+    }
     // api changed from v3.3
-    func noticeTop(text: String, autoClear: Bool = false, autoClearTime: Int = 1) {
+    func noticeTop(text: String, autoClear: Bool = true, autoClearTime: Int = 1) {
         SwiftNotice.noticeOnSatusBar(text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
     
@@ -60,11 +64,34 @@ class SwiftNotice: NSObject {
     
     static var windows = Array<UIWindow!>()
     static let rv = UIApplication.sharedApplication().keyWindow?.subviews.first as UIView!
+    static var timer: dispatch_source_t!
+    static var timerTimes = 0
+    static var degree: Double {
+        get {
+            return [0, 0, 180, 270, 90][UIApplication.sharedApplication().statusBarOrientation.hashValue] as Double
+        }
+    }
+    static var center: CGPoint {
+        get {
+            var array = [UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height]
+            array = array.sort(<)
+            let screenWidth = array[0]
+            let screenHeight = array[1]
+            let x = [0, screenWidth/2, screenWidth/2, 10, screenWidth-10][UIApplication.sharedApplication().statusBarOrientation.hashValue] as CGFloat
+            let y = [0, 10, screenHeight-10, screenHeight/2, screenHeight/2][UIApplication.sharedApplication().statusBarOrientation.hashValue] as CGFloat
+            return CGPointMake(x, y)
+        }
+    }
     
     // fix https://github.com/johnlui/SwiftNotice/issues/2
     // thanks broccolii(https://github.com/broccolii) and his PR https://github.com/johnlui/SwiftNotice/pull/5
     static func clear() {
         self.cancelPreviousPerformRequestsWithTarget(self)
+        if let _ = timer {
+            dispatch_source_cancel(timer)
+            timer = nil
+            timerTimes = 0
+        }
         windows.removeAll(keepCapacity: false)
     }
     
@@ -87,6 +114,9 @@ class SwiftNotice: NSObject {
         
         window.windowLevel = UIWindowLevelStatusBar
         window.hidden = false
+        // change orientation
+        window.center = center
+        window.transform = CGAffineTransformMakeRotation(CGFloat(degree * M_PI / 180))
         window.addSubview(view)
         windows.append(window)
         
@@ -95,7 +125,7 @@ class SwiftNotice: NSObject {
             self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(autoClearTime))
         }
     }
-    static func wait() {
+    static func wait(imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) {
         let frame = CGRectMake(0, 0, 78, 78)
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
@@ -103,16 +133,35 @@ class SwiftNotice: NSObject {
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
         
-        let ai = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        ai.frame = CGRectMake(21, 21, 36, 36)
-        ai.startAnimating()
-        mainView.addSubview(ai)
-
+        if imageNames.count > 0 {
+            if imageNames.count > timerTimes {
+                let iv = UIImageView(frame: frame)
+                iv.image = imageNames.first!
+                iv.contentMode = UIViewContentMode.ScaleAspectFit
+                mainView.addSubview(iv)
+                timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue())
+                dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, UInt64(timeInterval) * NSEC_PER_MSEC, 0)
+                dispatch_source_set_event_handler(timer, { () -> Void in
+                    let name = imageNames[timerTimes % imageNames.count]
+                    iv.image = name
+                    timerTimes++
+                })
+                dispatch_resume(timer)
+            }
+        } else {
+            let ai = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+            ai.frame = CGRectMake(21, 21, 36, 36)
+            ai.startAnimating()
+            mainView.addSubview(ai)
+        }
+        
         window.frame = frame
         mainView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = rv.center
+        window.center = getRealCenter()
+        // change orientation
+        window.transform = CGAffineTransformMakeRotation(CGFloat(degree * M_PI / 180))
         window.hidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -140,7 +189,9 @@ class SwiftNotice: NSObject {
         label.center = mainView.center
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = rv.center
+        window.center = getRealCenter()
+        // change orientation
+        window.transform = CGAffineTransformMakeRotation(CGFloat(degree * M_PI / 180))
         window.hidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -178,11 +229,13 @@ class SwiftNotice: NSObject {
         mainView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = rv.center
+        window.center = getRealCenter()
+        // change orientation
+        window.transform = CGAffineTransformMakeRotation(CGFloat(degree * M_PI / 180))
         window.hidden = false
         window.addSubview(mainView)
         windows.append(window)
-
+        
         if autoClear {
             let selector = Selector("hideNotice:")
             self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(autoClearTime))
@@ -197,6 +250,15 @@ class SwiftNotice: NSObject {
             }) {
                 windows.removeAtIndex(index)
             }
+        }
+    }
+    
+    // fix orientation problem
+    static func getRealCenter() -> CGPoint {
+        if UIApplication.sharedApplication().statusBarOrientation.hashValue >= 3 {
+            return CGPoint(x: rv.center.y, y: rv.center.x)
+        } else {
+            return rv.center
         }
     }
 }
