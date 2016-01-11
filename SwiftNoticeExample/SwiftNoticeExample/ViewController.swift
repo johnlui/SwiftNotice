@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +44,7 @@ class ViewController: UIViewController {
         self.infoNotice("Info")
     }
     @IBAction func text(sender: AnyObject) {
+//        SwiftNotice.showText("kiss me baby")
         self.noticeOnlyText("Only Text Only Text Only Text Only \nText Only Text Only Text Only\n Text Only Text Only Text ")
     }
     @IBAction func clear(sender: AnyObject) {
