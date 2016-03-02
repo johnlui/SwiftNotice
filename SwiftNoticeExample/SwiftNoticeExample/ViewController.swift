@@ -22,10 +22,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func topNotice(sender: AnyObject) {
+      self.clear(self)
         self.noticeTop("OK!")
     }
     @IBAction func wait(sender: AnyObject) {
 //        self.pleaseWait()
+      self.clear(self)
         var imagesArray = Array<UIImage>()
         for i in 1...7 {
             imagesArray.append(UIImage(named: "loading\(i)")!)
@@ -33,18 +35,22 @@ class ViewController: UIViewController {
         self.pleaseWaitWithImages(imagesArray, timeInterval: 50)
     }
     @IBAction func noticeSuccess(sender: AnyObject) {
+      self.clear(self)
         self.successNotice("Success!")
         self.noticeSuccess("Success!", autoClear: true)
         self.noticeSuccess("Success!", autoClear: true, autoClearTime: 10)
     }
     @IBAction func noticeError(sender: AnyObject) {
+      self.clear(self)
         self.errorNotice("Error!")
     }
     @IBAction func noticeInfo(sender: AnyObject) {
+      self.clear(self)
         self.infoNotice("Info")
     }
     @IBAction func text(sender: AnyObject) {
 //        SwiftNotice.showText("kiss me baby")
+      self.clear(self)
         self.noticeOnlyText("Only Text Only Text Only Text Only \nText Only Text Only Text Only\n Text Only Text Only Text ")
     }
     @IBAction func clear(sender: AnyObject) {
@@ -52,4 +58,3 @@ class ViewController: UIViewController {
     }
 
 }
-
