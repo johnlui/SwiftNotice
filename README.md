@@ -1,3 +1,5 @@
+[![Language](https://img.shields.io/badge/swift-2.1-orange.svg)](http://swift.org)
+
 SwiftNotice
 --
 SwiftNotice is a GUI library for displaying various popups (HUD) written in pure Swift, fits any scrollview.
