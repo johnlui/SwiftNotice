@@ -248,6 +248,8 @@ class SwiftNotice: NSObject {
             if let index = windows.indexOf({ (item) -> Bool in
                 return item == window
             }) {
+                // 在iOS 8 window从数组中移除还显示 需要隐藏
+                window.hidden = true
                 windows.removeAtIndex(index)
             }
         }
