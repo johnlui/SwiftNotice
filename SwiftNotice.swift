@@ -16,7 +16,7 @@ extension UIViewController {
     }
     // api changed from v3.3
     func noticeTop(text: String, autoClear: Bool = true, autoClearTime: Int = 1) {
-        SwiftNotice.noticeOnSatusBar(text, autoClear: autoClear, autoClearTime: autoClearTime)
+        SwiftNotice.noticeOnStatusBar(text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
     
     // new apis from v3.3
@@ -95,7 +95,7 @@ class SwiftNotice: NSObject {
         windows.removeAll(keepCapacity: false)
     }
     
-    static func noticeOnSatusBar(text: String, autoClear: Bool, autoClearTime: Int) {
+    static func noticeOnStatusBar(text: String, autoClear: Bool, autoClearTime: Int) {
         let frame = UIApplication.sharedApplication().statusBarFrame
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
