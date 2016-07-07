@@ -15,8 +15,8 @@ extension UIViewController {
         SwiftNotice.wait(imageNames, timeInterval: timeInterval)
     }
     // api changed from v3.3
-    func noticeTop(text: String, autoClear: Bool = true, autoClearTime: Int = 1) {
-        SwiftNotice.noticeOnStatusBar(text, autoClear: autoClear, autoClearTime: autoClearTime)
+    func noticeTop(text: String, autoClear: Bool = true, autoClearTime: Int = 1, defaultStatus:Bool = true,defaultFontSize:CGFloat = 12) {
+        SwiftNotice.noticeOnStatusBar(text, autoClear: autoClear, autoClearTime: autoClearTime,status: defaultStatus,fontSize: defaultFontSize)
     }
     
     // new apis from v3.3
@@ -94,17 +94,32 @@ class SwiftNotice: NSObject {
         }
         windows.removeAll(keepCapacity: false)
     }
+  
     
-    static func noticeOnStatusBar(text: String, autoClear: Bool, autoClearTime: Int) {
-        let frame = UIApplication.sharedApplication().statusBarFrame
+    private func getNavigationBarHeight() -> CGFloat {
+        if UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication()
+            .statusBarOrientation) || UI_USER_INTERFACE_IDIOM() == .Pad {
+            return 44.0
+        }
+        return 30.0
+    }
+    static func noticeOnStatusBar(text: String, autoClear: Bool, autoClearTime: Int , status:Bool = true,fontSize:CGFloat = 12) {
+        let frame = CGRectMake(UIApplication.sharedApplication().statusBarFrame.origin.x, UIApplication.sharedApplication().statusBarFrame.origin.y, UIApplication.sharedApplication().statusBarFrame.width, 66)
+        
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0x6a/0x100, green: 0xb4/0x100, blue: 0x9f/0x100, alpha: 1)
+        if status {
+            view.backgroundColor = UIColor(red: 0x6a/0x100, green: 0xb4/0x100, blue: 0x9f/0x100, alpha: 0.8)
+
+        }else{
+            view.backgroundColor = UIColor.redColor()
+ 
+        }
         
         let label = UILabel(frame: frame)
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.systemFontOfSize(12)
+        label.font = UIFont.systemFontOfSize(fontSize)
         label.textColor = UIColor.whiteColor()
         label.text = text
         view.addSubview(label)
