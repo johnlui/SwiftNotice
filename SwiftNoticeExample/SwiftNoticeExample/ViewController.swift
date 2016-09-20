@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+//        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,10 +21,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func topNotice(sender: AnyObject) {
-        self.noticeTop("OK!")
+    @IBAction func topNotice(_ sender: AnyObject) {
+        self.noticeTop("OK!", autoClear: false)
     }
-    @IBAction func wait(sender: AnyObject) {
+    @IBAction func wait(_ sender: AnyObject) {
 //        self.pleaseWait()
         var imagesArray = Array<UIImage>()
         for i in 1...7 {
@@ -32,22 +32,22 @@ class ViewController: UIViewController {
         }
         self.pleaseWaitWithImages(imagesArray, timeInterval: 50)
     }
-    @IBAction func noticeSuccess(sender: AnyObject) {
+    @IBAction func noticeSuccess(_ sender: AnyObject) {
         self.successNotice("Success!")
         self.noticeSuccess("Success!", autoClear: true)
         self.noticeSuccess("Success!", autoClear: true, autoClearTime: 10)
     }
-    @IBAction func noticeError(sender: AnyObject) {
+    @IBAction func noticeError(_ sender: AnyObject) {
         self.errorNotice("Error!")
     }
-    @IBAction func noticeInfo(sender: AnyObject) {
+    @IBAction func noticeInfo(_ sender: AnyObject) {
         self.infoNotice("Info")
     }
-    @IBAction func text(sender: AnyObject) {
+    @IBAction func text(_ sender: AnyObject) {
 //        SwiftNotice.showText("kiss me baby")
         self.noticeOnlyText("Only Text Only Text Only Text Only \nText Only Text Only Text Only\n Text Only Text Only Text ")
     }
-    @IBAction func clear(sender: AnyObject) {
+    @IBAction func clear(_ sender: AnyObject) {
         self.clearAllNotice()
     }
 
