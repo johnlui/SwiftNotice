@@ -12,20 +12,20 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func topNotice(_ sender: AnyObject) {
-        self.noticeTop("OK!", autoClear: false)
+        UIApplication.shared.setStatusBarHidden(false, with: .slide)
+        self.noticeTop("OK!")
     }
     @IBAction func wait(_ sender: AnyObject) {
-//        self.pleaseWait()
+        // Just wait
+        // self.pleaseWait()
+        
         var imagesArray = Array<UIImage>()
         for i in 1...7 {
             imagesArray.append(UIImage(named: "loading\(i)")!)

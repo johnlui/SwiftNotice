@@ -8,7 +8,7 @@ SwiftNotice is a GUI library for displaying various popups (HUD) written in pure
 
 ##Pretty easy to use
 
-In any subclass of UIViewController:
+In any subclass of UIView, UIScrollView, UIViewController, UITableViewController, UITableViewCell:
 
 ```swift
 self.pleaseWait()
@@ -33,8 +33,10 @@ Just clone and add `SwiftNotice.swift` to your project.
 ##Requirements
 
 * iOS 7.0+
+
+* Xcode 8 (Swift 3) in current swift3 branch.
+* Xcode 7 (Swift 2) in master branch
 * Xcode 6.3 (Swift 1.2) in [v3.1](https://github.com/johnlui/SwiftNotice/releases/tag/v3.1)
-* Xcode 7 (Swift 2.0) in the current master branch
 
 ##Contribution
 

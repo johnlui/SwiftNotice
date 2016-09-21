@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
+extension UIResponder {
     /// wait with your own animated images
     func pleaseWaitWithImages(_ imageNames: Array<UIImage>, timeInterval: Int) {
         SwiftNotice.wait(imageNames, timeInterval: timeInterval)
@@ -106,8 +106,6 @@ class SwiftNotice: NSObject {
         
         window.windowLevel = UIWindowLevelStatusBar
         window.isHidden = false
-        // change orientation
-        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
         window.addSubview(view)
         windows.append(window)
         
@@ -130,8 +128,8 @@ class SwiftNotice: NSObject {
                 iv.image = imageNames.first!
                 iv.contentMode = UIViewContentMode.scaleAspectFit
                 mainView.addSubview(iv)
-                timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) /*Migrator FIXME: Use DispatchSourceTimer to avoid the cast*/ as! DispatchSource
-                timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.nanoseconds(timeInterval))
+                timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) as! DispatchSource
+                timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.milliseconds(timeInterval))
                 timer.setEventHandler(handler: { () -> Void in
                     let name = imageNames[timerTimes % imageNames.count]
                     iv.image = name
