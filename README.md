@@ -33,9 +33,8 @@ Just clone and add `SwiftNotice.swift` to your project.
 ##Requirements
 
 * iOS 7.0+
-
 * Xcode 8 (Swift 3) in current swift3 branch.
-* Xcode 7 (Swift 2) in master branch
+* Xcode 7 (Swift 2) in master branch.
 * Xcode 6.3 (Swift 1.2) in [v3.1](https://github.com/johnlui/SwiftNotice/releases/tag/v3.1)
 
 ##Contribution
