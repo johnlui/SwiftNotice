@@ -67,7 +67,7 @@ class SwiftNotice: NSObject {
     static var timer: DispatchSource!
     static var timerTimes = 0
     
-    /* iOS 10 fix the orientation bug finally.
+    /* just for iOS 8
      */
     static var degree: Double {
         get {
@@ -103,6 +103,21 @@ class SwiftNotice: NSObject {
         
         window.frame = frame
         view.frame = frame
+        
+        if let version = Double(UIDevice.current.systemVersion),
+            version < 9.0 {
+            // change center
+            var array = [UIScreen.main.bounds.width, UIScreen.main.bounds.height]
+            array = array.sorted(by: <)
+            let screenWidth = array[0]
+            let screenHeight = array[1]
+            let x = [0, screenWidth/2, screenWidth/2, 10, screenWidth-10][UIApplication.shared.statusBarOrientation.hashValue] as CGFloat
+            let y = [0, 10, screenHeight-10, screenHeight/2, screenHeight/2][UIApplication.shared.statusBarOrientation.hashValue] as CGFloat
+            window.center = CGPoint(x: x, y: y)
+            
+            // change direction
+            window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        }
         
         window.windowLevel = UIWindowLevelStatusBar
         window.isHidden = false
@@ -146,9 +161,17 @@ class SwiftNotice: NSObject {
         
         window.frame = frame
         mainView.frame = frame
+        window.center = rv!.center
+        
+        if let version = Double(UIDevice.current.systemVersion),
+            version < 9.0 {
+            // change center
+            window.center = getRealCenter()
+            // change direction
+            window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        }
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = rv!.center
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -174,9 +197,17 @@ class SwiftNotice: NSObject {
         mainView.frame = superFrame
         
         label.center = mainView.center
+        window.center = rv!.center
+        
+        if let version = Double(UIDevice.current.systemVersion),
+            version < 9.0 {
+            // change center
+            window.center = getRealCenter()
+            // change direction
+            window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        }
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = rv!.center
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -212,6 +243,15 @@ class SwiftNotice: NSObject {
         
         window.frame = frame
         mainView.frame = frame
+        window.center = rv!.center
+        
+        if let version = Double(UIDevice.current.systemVersion),
+            version < 9.0 {
+            // change center
+            window.center = getRealCenter()
+            // change direction
+            window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        }
         
         window.windowLevel = UIWindowLevelAlert
         window.center = rv!.center
@@ -236,8 +276,7 @@ class SwiftNotice: NSObject {
         }
     }
     
-    /* iOS 10 Deprecated
-    // fix orientation problem
+    // just for iOS 8
     static func getRealCenter() -> CGPoint {
         if UIApplication.shared.statusBarOrientation.hashValue >= 3 {
             return CGPoint(x: rv!.center.y, y: rv!.center.x)
@@ -245,7 +284,6 @@ class SwiftNotice: NSObject {
             return rv!.center
         }
     }
-    */
 }
 
 class SwiftNoticeSDK {
