@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+private let sn_topBar: Int = 1001
+
 extension UIResponder {
     /// wait with your own animated images
     func pleaseWaitWithImages(_ imageNames: Array<UIImage>, timeInterval: Int) {
@@ -123,11 +125,22 @@ class SwiftNotice: NSObject {
         window.isHidden = false
         window.addSubview(view)
         windows.append(window)
-        
-        if autoClear {
-            let selector = #selector(SwiftNotice.hideNotice(_:))
-            self.perform(selector, with: window, afterDelay: TimeInterval(autoClearTime))
-        }
+      
+        var origPoint = view.frame.origin
+        origPoint.y = -(view.frame.size.height)
+        let destPoint = view.frame.origin
+        view.tag = sn_topBar
+      
+        view.frame = CGRect(origin: origPoint, size: view.frame.size)
+        UIView.animate(withDuration: 0.3, animations: {
+          view.frame = CGRect(origin: destPoint, size: view.frame.size)
+        }, completion: { b in
+          if autoClear {
+              let selector = #selector(SwiftNotice.hideNotice(_:))
+              self.perform(selector, with: window, afterDelay: TimeInterval(autoClearTime))
+          }
+        })
+      
     }
     static func wait(_ imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) {
         let frame = CGRect(x: 0, y: 0, width: 78, height: 78)
@@ -175,6 +188,11 @@ class SwiftNotice: NSObject {
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
+      
+        mainView.alpha = 0.0
+        UIView.animate(withDuration: 0.2, animations: {
+          mainView.alpha = 1
+        })
     }
     static func showText(_ text: String) {
         let window = UIWindow()
@@ -258,21 +276,39 @@ class SwiftNotice: NSObject {
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
-        
+      
+        mainView.alpha = 0.0
+        UIView.animate(withDuration: 0.2, animations: {
+          mainView.alpha = 1
+        })
+      
         if autoClear {
             let selector = #selector(SwiftNotice.hideNotice(_:))
             self.perform(selector, with: window, afterDelay: TimeInterval(autoClearTime))
         }
     }
-    
+  
     // fix https://github.com/johnlui/SwiftNotice/issues/2
     static func hideNotice(_ sender: AnyObject) {
         if let window = sender as? UIWindow {
-            if let index = windows.index(where: { (item) -> Bool in
-                return item == window
-            }) {
-                windows.remove(at: index)
-            }
+          
+          if let v = window.subviews.first {
+            UIView.animate(withDuration: 0.2, animations: {
+              
+              if v.tag == sn_topBar {
+                v.frame = CGRect(x: 0, y: -v.frame.height, width: v.frame.width, height: v.frame.height)
+              }
+              v.alpha = 0
+            }, completion: { b in
+              
+              if let index = windows.index(where: { (item) -> Bool in
+                  return item == window
+              }) {
+                  windows.remove(at: index)
+              }
+            })
+          }
+          
         }
     }
     
