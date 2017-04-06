@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,102 +18,115 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSY-kU-1Hg" userLabel="successNotice">
-                                <rect key="frame" x="221" y="102" width="159" height="28"/>
+                                <rect key="frame" x="108" y="102" width="159" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="gub-jp-YUa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="successNotice">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="noticeSuccess:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2aT-ne-wOy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZy-0c-TYE">
-                                <rect key="frame" x="221" y="137" width="159" height="28"/>
+                                <rect key="frame" x="108" y="137" width="159" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="Jwz-2y-Vuk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="errorNotice">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="noticeError:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ruD-Jy-tXn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhX-xe-SUb">
-                                <rect key="frame" x="221" y="172" width="159" height="28"/>
+                                <rect key="frame" x="108" y="172" width="159" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="cTg-ET-Q0I"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="infoNotice">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="noticeInfo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PXD-xy-XH6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzm-el-j3t">
-                                <rect key="frame" x="221" y="539" width="159" height="28"/>
+                                <rect key="frame" x="108" y="606" width="159" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="yyj-BU-E1j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="clearAllNotice">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="clear:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Jvm-07-gVI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEE-N6-q62">
-                                <rect key="frame" x="221" y="207" width="159" height="28"/>
+                                <rect key="frame" x="108" y="207" width="159" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="7DC-fx-7p3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="noticeOnlyText">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="text:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d7T-OY-tgi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VX1-bL-S67">
-                                <rect key="frame" x="242" y="67" width="117" height="28"/>
+                                <rect key="frame" x="129" y="67" width="117" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="jcR-tK-OvS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="pleaseWait">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="wait:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aPu-0P-t4c"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTy-gc-doX">
-                                <rect key="frame" x="249" y="504" width="104" height="28"/>
+                                <rect key="frame" x="136" y="571" width="104" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="j6n-Ju-H3D"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="noticeTop">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="topNotice:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Zpm-pn-2Ze"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMS-S9-K9h">
+                                <rect key="frame" x="108" y="242" width="159" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Cz1-Dq-EcF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="request">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="request:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XDS-XV-RSf"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VX1-bL-S67" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="47" id="0jK-Wt-xVt"/>
                             <constraint firstItem="Kzm-el-j3t" firstAttribute="centerX" secondItem="yTy-gc-doX" secondAttribute="centerX" id="4DG-w9-wUN"/>
@@ -128,8 +145,11 @@
                             <constraint firstItem="Kzm-el-j3t" firstAttribute="top" secondItem="yTy-gc-doX" secondAttribute="bottom" constant="7" id="Zh3-h9-fbC"/>
                             <constraint firstItem="uhX-xe-SUb" firstAttribute="trailing" secondItem="MEE-N6-q62" secondAttribute="trailing" id="a8O-Rl-VtX"/>
                             <constraint firstItem="Kzm-el-j3t" firstAttribute="top" secondItem="MEE-N6-q62" secondAttribute="bottom" constant="8" symbolic="YES" id="jcg-24-9On"/>
+                            <constraint firstItem="rMS-S9-K9h" firstAttribute="leading" secondItem="MEE-N6-q62" secondAttribute="leading" id="kIo-Ay-WPT"/>
                             <constraint firstItem="DSY-kU-1Hg" firstAttribute="trailing" secondItem="fZy-0c-TYE" secondAttribute="trailing" id="pEB-tj-lY4"/>
                             <constraint firstItem="MEE-N6-q62" firstAttribute="top" secondItem="uhX-xe-SUb" secondAttribute="bottom" constant="7" id="tfx-9O-mva"/>
+                            <constraint firstItem="rMS-S9-K9h" firstAttribute="trailing" secondItem="MEE-N6-q62" secondAttribute="trailing" id="tg6-0z-eTc"/>
+                            <constraint firstItem="rMS-S9-K9h" firstAttribute="top" secondItem="MEE-N6-q62" secondAttribute="bottom" constant="7" id="xZm-hT-MVp"/>
                             <constraint firstItem="fZy-0c-TYE" firstAttribute="leading" secondItem="DSY-kU-1Hg" secondAttribute="leading" id="z2M-zE-OyC"/>
                         </constraints>
                         <variation key="default">

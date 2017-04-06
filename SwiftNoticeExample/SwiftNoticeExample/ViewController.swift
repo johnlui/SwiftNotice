@@ -50,6 +50,25 @@ class ViewController: UIViewController {
     @IBAction func clear(_ sender: AnyObject) {
         self.clearAllNotice()
     }
+    
+    @IBAction func request(_ sender: UIButton) {
+        let hud = self.pleaseWait()
+        DispatchQueue.global().async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                hud.hide()
+                self.successNotice("Success", autoClear: true)
+                self.anotherRequest()
+            })
+        }
+    }
 
+    func anotherRequest(){
+        let hud = self.pleaseWait()
+        DispatchQueue.global().async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                hud.hide()
+            })
+        }
+    }
 }
 
