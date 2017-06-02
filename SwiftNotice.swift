@@ -224,7 +224,8 @@ class SwiftNotice: NSObject {
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.white
-        label.sizeToFit()
+        let size = label.sizeThatFits(CGSize(width: UIScreen.main.bounds.width-82, height: CGFloat.greatestFiniteMagnitude))
+        label.bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         mainView.addSubview(label)
         
         let superFrame = CGRect(x: 0, y: 0, width: label.frame.width + 50 , height: label.frame.height + 30)
