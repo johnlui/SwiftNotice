@@ -137,22 +137,21 @@ class SwiftNotice: NSObject {
         window.isHidden = false
         window.addSubview(view)
         windows.append(window)
-      
+        
         var origPoint = view.frame.origin
         origPoint.y = -(view.frame.size.height)
         let destPoint = view.frame.origin
         view.tag = sn_topBar
-      
+        
         view.frame = CGRect(origin: origPoint, size: view.frame.size)
         UIView.animate(withDuration: 0.3, animations: {
-          view.frame = CGRect(origin: destPoint, size: view.frame.size)
+            view.frame = CGRect(origin: destPoint, size: view.frame.size)
         }, completion: { b in
-          if autoClear {
-              let selector = #selector(SwiftNotice.hideNotice(_:))
-              self.perform(selector, with: window, afterDelay: TimeInterval(autoClearTime))
-          }
+            if autoClear {
+                self.perform(.hideNotice, with: window, afterDelay: TimeInterval(autoClearTime))
+            }
         })
-      return window
+        return window
     }
     
     @discardableResult
@@ -171,7 +170,7 @@ class SwiftNotice: NSObject {
                 iv.contentMode = UIViewContentMode.scaleAspectFit
                 mainView.addSubview(iv)
                 timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) as! DispatchSource
-                timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.milliseconds(timeInterval))
+                timer.schedule(deadline: DispatchTime.now(), repeating: DispatchTimeInterval.milliseconds(timeInterval))
                 timer.setEventHandler(handler: { () -> Void in
                     let name = imageNames[timerTimes % imageNames.count]
                     iv.image = name
@@ -202,10 +201,10 @@ class SwiftNotice: NSObject {
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
-      
+        
         mainView.alpha = 0.0
         UIView.animate(withDuration: 0.2, animations: {
-          mainView.alpha = 1
+            mainView.alpha = 1
         })
         return window
     }
@@ -249,8 +248,7 @@ class SwiftNotice: NSObject {
         windows.append(window)
         
         if autoClear {
-            let selector = #selector(SwiftNotice.hideNotice(_:))
-            self.perform(selector, with: window, afterDelay: TimeInterval(autoClearTime))
+            self.perform(.hideNotice, with: window, afterDelay: TimeInterval(autoClearTime))
         }
         return window
     }
@@ -301,41 +299,16 @@ class SwiftNotice: NSObject {
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
-      
+        
         mainView.alpha = 0.0
         UIView.animate(withDuration: 0.2, animations: {
-          mainView.alpha = 1
+            mainView.alpha = 1
         })
-      
+        
         if autoClear {
-            let selector = #selector(SwiftNotice.hideNotice(_:))
-            self.perform(selector, with: window, afterDelay: TimeInterval(autoClearTime))
+            self.perform(.hideNotice, with: window, afterDelay: TimeInterval(autoClearTime))
         }
         return window
-    }
-  
-    // fix https://github.com/johnlui/SwiftNotice/issues/2
-    static func hideNotice(_ sender: AnyObject) {
-        if let window = sender as? UIWindow {
-          
-          if let v = window.subviews.first {
-            UIView.animate(withDuration: 0.2, animations: {
-              
-              if v.tag == sn_topBar {
-                v.frame = CGRect(x: 0, y: -v.frame.height, width: v.frame.width, height: v.frame.height)
-              }
-              v.alpha = 0
-            }, completion: { b in
-              
-              if let index = windows.index(where: { (item) -> Bool in
-                  return item == window
-              }) {
-                  windows.remove(at: index)
-              }
-            })
-          }
-          
-        }
     }
     
     // just for iOS 8
@@ -439,4 +412,36 @@ extension UIWindow{
     func hide(){
         SwiftNotice.hideNotice(self)
     }
+}
+
+fileprivate extension Selector {
+    static let hideNotice = #selector(SwiftNotice.hideNotice(_:))
+}
+
+@objc extension SwiftNotice {
+    
+    // fix https://github.com/johnlui/SwiftNotice/issues/2
+    static func hideNotice(_ sender: AnyObject) {
+        if let window = sender as? UIWindow {
+            
+            if let v = window.subviews.first {
+                UIView.animate(withDuration: 0.2, animations: {
+                    
+                    if v.tag == sn_topBar {
+                        v.frame = CGRect(x: 0, y: -v.frame.height, width: v.frame.width, height: v.frame.height)
+                    }
+                    v.alpha = 0
+                }, completion: { b in
+                    
+                    if let index = windows.index(where: { (item) -> Bool in
+                        return item == window
+                    }) {
+                        windows.remove(at: index)
+                    }
+                })
+            }
+            
+        }
+    }
+    
 }
