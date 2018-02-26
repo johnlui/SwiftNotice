@@ -12,12 +12,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SwiftNotice.disableUserInteraction = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    @IBAction func userInteractionSwitch(_ sender: UISwitch) {
+        SwiftNotice.disableUserInteraction = sender.isOn
+    }
+    
     @IBAction func topNotice(_ sender: AnyObject) {
         UIApplication.shared.setStatusBarHidden(false, with: .slide)
         self.noticeTop("OK!")
