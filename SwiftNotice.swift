@@ -75,8 +75,8 @@ enum NoticeType{
 
 class SwiftNotice: NSObject {
     
-    static var windows = Array<UIWindow!>()
-    static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView!
+    static var windows = Array<UIWindow?>()
+    static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView?
     static var timer: DispatchSource!
     static var timerTimes = 0
     
