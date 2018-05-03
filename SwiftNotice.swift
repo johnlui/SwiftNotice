@@ -79,7 +79,8 @@ class SwiftNotice: NSObject {
     static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView?
     static var timer: DispatchSource!
     static var timerTimes = 0
-    
+    static var disableUserInteraction = false
+
     /* just for iOS 8
      */
     static var degree: Double {
@@ -157,12 +158,11 @@ class SwiftNotice: NSObject {
     @discardableResult
     static func wait(_ imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) -> UIWindow {
         let frame = CGRect(x: 0, y: 0, width: 78, height: 78)
-        let window = UIWindow()
-        window.backgroundColor = UIColor.clear
+        let window = configWindow()
         let mainView = UIView()
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
-        
+        window.addSubview(mainView)
         if imageNames.count > 0 {
             if imageNames.count > timerTimes {
                 let iv = UIImageView(frame: frame)
@@ -185,21 +185,18 @@ class SwiftNotice: NSObject {
             mainView.addSubview(ai)
         }
         
-        window.frame = frame
         mainView.frame = frame
-        window.center = rv!.center
         
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
             // change center
-            window.center = getRealCenter()
+            mainView.center = getRealCenter()
             // change direction
-            window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
+            mainView.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
+        }else{
+            mainView.center = window.center
         }
         
-        window.windowLevel = UIWindowLevelAlert
-        window.isHidden = false
-        window.addSubview(mainView)
         windows.append(window)
         
         mainView.alpha = 0.0
@@ -211,11 +208,11 @@ class SwiftNotice: NSObject {
     
     @discardableResult
     static func showText(_ text: String, autoClear: Bool=true, autoClearTime: Int=2) -> UIWindow {
-        let window = UIWindow()
-        window.backgroundColor = UIColor.clear
+        let window = configWindow()
         let mainView = UIView()
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
+        window.addSubview(mainView)
         
         let label = UILabel()
         label.text = text
@@ -228,23 +225,20 @@ class SwiftNotice: NSObject {
         mainView.addSubview(label)
         
         let superFrame = CGRect(x: 0, y: 0, width: label.frame.width + 50 , height: label.frame.height + 30)
-        window.frame = superFrame
         mainView.frame = superFrame
         
         label.center = mainView.center
-        window.center = rv!.center
         
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
             // change center
-            window.center = getRealCenter()
+            mainView.center = getRealCenter()
             // change direction
-            window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
+            mainView.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
+        }else{
+            mainView.center = window.center
         }
         
-        window.windowLevel = UIWindowLevelAlert
-        window.isHidden = false
-        window.addSubview(mainView)
         windows.append(window)
         
         if autoClear {
@@ -256,11 +250,11 @@ class SwiftNotice: NSObject {
     @discardableResult
     static func showNoticeWithText(_ type: NoticeType,text: String, autoClear: Bool, autoClearTime: Int) -> UIWindow {
         let frame = CGRect(x: 0, y: 0, width: 90, height: 90)
-        let window = UIWindow()
-        window.backgroundColor = UIColor.clear
+        let window = configWindow()
         let mainView = UIView()
         mainView.layer.cornerRadius = 10
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.7)
+        window.addSubview(mainView)
         
         var image = UIImage()
         switch type {
@@ -281,23 +275,18 @@ class SwiftNotice: NSObject {
         label.text = text
         label.textAlignment = NSTextAlignment.center
         mainView.addSubview(label)
-        
-        window.frame = frame
         mainView.frame = frame
-        window.center = rv!.center
         
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
             // change center
-            window.center = getRealCenter()
+            mainView.center = getRealCenter()
             // change direction
-            window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
+            mainView.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
+        }else{
+            mainView.center = window.center
         }
         
-        window.windowLevel = UIWindowLevelAlert
-        window.center = rv!.center
-        window.isHidden = false
-        window.addSubview(mainView)
         windows.append(window)
         
         mainView.alpha = 0.0
@@ -318,6 +307,17 @@ class SwiftNotice: NSObject {
         } else {
             return rv!.center
         }
+    }
+    // config general window
+    static func configWindow() -> UIWindow{
+        let window = UIWindow()
+        window.backgroundColor = UIColor.clear
+        window.frame = (UIApplication.shared.keyWindow?.frame)!
+        window.windowLevel = UIWindowLevelAlert
+        window.isHidden = false
+        window.center = SwiftNotice.rv!.center
+        window.isUserInteractionEnabled = SwiftNotice.disableUserInteraction
+        return window
     }
 }
 
