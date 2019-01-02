@@ -313,7 +313,7 @@ class SwiftNotice: NSObject {
     
     // just for iOS 8
     static func getRealCenter() -> CGPoint {
-        if UIApplication.shared.statusBarOrientation.hashValue >= 3 {
+        if UIApplication.shared.statusBarOrientation.rawValue >= 3 {
             return CGPoint(x: rv!.center.y, y: rv!.center.x)
         } else {
             return rv!.center
